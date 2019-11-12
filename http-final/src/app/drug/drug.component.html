@@ -1,0 +1,46 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="/disease">Disease</a></li>
+        <li><a href="/drug">Drug</a></li>
+        <li><a href="/patient">Patient</a></li>
+        <li><a href="/treat">Treat</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <h1>{{ appName | async }}</h1>
+        <input type="text" class="drug_kayit" width="48" height="48" #serverName>
+       
+        
+        <button class="btn-primary" (click)="onSave(serverName.value)">Save Drug</button> 
+        <!-- <button class="btn btn-primary" (click)="onGet()">Get Servers</button>-->
+        <hr>
+        <ul class="list-group" *ngFor="let server of servers">
+          <!--<li class="list-group-item">{{ server.name }} (ID: {{ server.drugId }})
+              <button class="btn btn-primary" (click)="delete(drug.drugId)">delete</button>-->
+        </ul>
+        
+          <h3>DRUGS</h3>
+        <ul class="list-group" *ngFor="let drug of drugList">
+          <li class="list-group-itemmm">{{ drug.drugName }} (ID: {{ drug.drugId }})
+          <button class="btnbtn-primary" (click)="delete(drug.drugId)">delete</button>
+        </ul>
+        
+      </div>
+    </div>

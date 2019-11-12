@@ -1,0 +1,141 @@
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#"></a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active">
+					<a href="#">Home</a>
+				</li>
+				<li>
+					<a href="/disease">Disease</a>
+				</li>
+				<li>
+					<a href="/drug">Drug</a>
+				</li>
+				<li>
+					<a href="/patient">Patient</a>
+				</li>
+				<li>
+					<a href="/treat">Treat</a>
+				</li>
+
+			</ul>
+		</div>
+	</nav>
+
+</body>
+
+
+<div class="container">
+
+	<form class="form" #updateForm="ngForm">
+		<div class="form-group row">
+			<div class="col-md-1"> Patient : </div>
+
+			<div class="col-md-11">
+				<select class="form-control " ngModel name="patient">
+
+					<option *ngFor="let patients of patientList; let i = index" [ngValue]="patients">{{patients.name}} {{patients.surname}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-md-1"> Disease : </div>
+
+			<div class="col-md-11">
+				<select class="form-control " ngModel name="disease">
+
+					<option *ngFor="let  disease of diseaseList; let i = index" [ngValue]="disease">{{disease.disease_name}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-md-1"> Drug : </div>
+
+			<div class="col-md-11">
+
+				<select class="form-control " ngModel name="drug">
+
+					<option *ngFor="let  drug of drugList; let i = index" [ngValue]="drug">{{drug.drugName}} </option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<!--<button type="button" class="btn" (click)="saveAll(updateForm.value)">Save</button>-->
+			<button type="button" class="btn-infobtn-lg" data-toggle="modal" data-target="#myModal" (click)="saveAll(updateForm.value)">Treat</button>
+		</div>
+
+	</form>
+
+
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Treatment</h4>
+				</div>
+				<div class="modal-body">
+					İlaç: {{selectedTreat?.drug.drugName}}
+					<br> Hasta: {{selectedTreat?.patient.name}}
+					<br> Hastalık: {{selectedTreat?.disease.disease_name}}
+
+
+					<div class="modal-footer">
+
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--
+  <div class="container">
+  <h2 class="a">TREAT LIST</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Patient</th>
+        <th>Disease</th>
+        <th>Drug</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let treat of treatList; let i = index">
+        <th scope="row">{{treat.patient?.name}}</th>
+        <td>{{treat.disease?.disease_name}}</td>
+        <td>{{treat.drug?.drugName}}</td>
+        
+      </tr>
+    </tbody>
+  </table>
+  </div>-->
+	</div>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Patient</th>
+				<th scope="col">Disease</th>
+				<th scope="col">Drug</th>
+			</tr>
+		</thead>
+
+
+		<tbody>
+			<tr *ngFor="let treat of treatList; let i = index">
+				<th scope="row">{{treat.patient?.name}}</th>
+				<td>{{treat.disease?.disease_name}}</td>
+				<td>{{treat.drug?.drugName}}</td>
+
+			</tr>
+		</tbody>
+	</table>

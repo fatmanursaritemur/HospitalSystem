@@ -1,0 +1,145 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="/disease">Disease</a>
+                </li>
+                <li>
+                    <a href="/drug">Drug</a>
+                </li>
+                <li>
+                    <a href="/patient">Patient</a>
+                </li>
+                <li>
+                    <a href="/treat">Treat</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+</body>
+<div class="container">
+    <h2 class="aa">PATIENT LIST</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Disease</th>
+                <th>Drug</th>
+                <th>Situation</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let patients of patientList; let i = index">
+                <th scope="row">{{patients.id}}</th>
+                <td>{{patients.name}}</td>
+                <td>{{patients.surname}}</td>
+                <td>{{patients.patient_disease}}</td>
+                <td>{{patients.patient_drug}}</td>
+
+                <td>{{patients.situation}}</td>
+
+                <td>
+                    <button type="button" class="btn-infobtn-lg" data-toggle="modal" data-target="#myModal" (click)="selectPatientt(patients)">EDIT</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="aa">ADD PATIENT</h2>
+    <div class="row">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+            <h1>{{ appName | async }}</h1>
+            <form class="form-hhhorizontal" #patientForm="ngForm" (ngSubmit)="savePatient(patientForm.value)">
+                <div class="form-group">
+                    <label for="name">Patient Name</label>
+                    <input type="text" class="form-control" id="name" name="name" ngModel required>
+                </div>
+
+                <div class="form-group">
+                    <label for="surname">Patient Surname</label>
+                    <input type="text" class="form-control" id="surname" name="surname" ngModel required>
+                </div>
+
+                <div class="form-group">
+                    <label for="patient_disease">Patient Disease</label>
+                    <input type="text" class="form-control" id="patient_disease" name="patient_disease" ngModel required>
+                </div>
+
+                <div class="form-group">
+                    <label for="patient_drug">Patient Drug</label>
+                    <input type="text" class="form-control" id="patient_drug" name="patient_drug" ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="patient_drug">Situation</label>
+                    <input type="text" class="form-control" id="situation" name="situation" ngModel required>
+                </div>
+
+
+
+                <button type="submit">Add Patient</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Patient Profile</h4>
+            </div>
+            <div class="modal-body">
+                <form #updateForm="ngForm" (ngSubmit)="savePatient(updateForm.value)">
+                    <input name="id" ngModel hidden> Name:
+                    <input type="text" name="name" ngModel>
+                    <br> Surname:
+
+                    <input type="text" name="surname" ngModel>
+                    <br> Disease:
+
+                    <input type="text" name="patient_disease" ngModel>
+
+                    <br> Drug:
+
+                    <input type="text" name="patient_drug" ngModel>
+                    <br>
+                    <br> Situation:
+
+                    <input type="text" name="situation" ngModel>
+                    <br>
+                    
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn" (click)="savePatient(updateForm.value)">Save</button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
